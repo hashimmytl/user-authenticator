@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f8fafc;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1, h3 {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    form {
+      background-color: #ffffff;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #3b82f6;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+    }
+
+    div {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      background-color: #f1f5f9;
+      margin-bottom: 10px;
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <h1>Products Page</h1>
+
+  <form id="productForm" action="/products/productspage" method="POST">
+    <input id="productname" name="productname" type="text" placeholder="Enter product name" required />
+    <input id="productprice" name="productprice" type="number" placeholder="Enter product price" required />
+    <button id="submit" type="submit">Add Product</button>
+  </form>
+
+  <div>
+    <h3>Products List</h3>
+    <ul id="lis"></ul>
+  </div>
+
+  <script>
+    const form = document.getElementById('productForm');
+    const productList = document.getElementById('lis');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('productname').value.trim();
+      const price = document.getElementById('productprice').value.trim();
+
+      if (name && price) {
+        const li = document.createElement('li');
+        li.textContent = `Product Name: ${name}, Product Price: ₹${price}`;
+        productList.appendChild(li);
+
+        form.reset(); // Clear form after submission
+      }
+    });
+  </script>
+</body>
+</html>
